@@ -1,4 +1,4 @@
-package com.c414.dload.mall_backend.mongodb;
+package com.c414.dload.mall_backend.nosql.mongodb.document;
 
 import lombok.Data;
 import org.springframework.data.annotation.Id;
