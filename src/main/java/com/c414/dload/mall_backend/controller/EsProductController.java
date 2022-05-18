@@ -2,7 +2,7 @@ package com.c414.dload.mall_backend.controller;
 
 
 import com.c414.dload.mall_backend.common.CommonResult;
-import com.c414.dload.mall_backend.elasticsearch.document.EsProduct;
+import com.c414.dload.mall_backend.nosql.elasticsearch.document.EsProduct;
 import com.c414.dload.mall_backend.entity.dto.CommonPage;
 import com.c414.dload.mall_backend.service.impl.EsProductServiceImpl;
 import io.swagger.annotations.Api;

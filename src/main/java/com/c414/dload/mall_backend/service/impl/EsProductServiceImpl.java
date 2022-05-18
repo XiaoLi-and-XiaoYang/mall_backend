@@ -1,8 +1,8 @@
 package com.c414.dload.mall_backend.service.impl;
 
 import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
-import com.c414.dload.mall_backend.elasticsearch.document.EsProduct;
-import com.c414.dload.mall_backend.elasticsearch.repo.EsProductRepository;
+import com.c414.dload.mall_backend.nosql.elasticsearch.document.EsProduct;
+import com.c414.dload.mall_backend.nosql.elasticsearch.repo.EsProductRepository;
 import com.c414.dload.mall_backend.mapper.EsProductMapper;
 import com.c414.dload.mall_backend.service.IEsProductService;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
@@ -14,7 +14,6 @@ import org.springframework.util.CollectionUtils;
 
 import javax.annotation.Resource;
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.Iterator;
 import java.util.List;
 

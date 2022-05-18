@@ -3,7 +3,7 @@
 <mapper namespace="com.c414.dload.mall_backend.mapper.EsProductAttributeValueMapper">
 
     <!-- 通用查询映射结果 -->
-    <resultMap id="BaseResultMap" type="com.c414.dload.mall_backend.elasticsearch.document.EsProductAttributeValue">
+    <resultMap id="BaseResultMap" type="com.c414.dload.mall_backend.nosql.elasticsearch.document.EsProductAttributeValue">
         <id column="id" property="id"/>
         <result column="product_id" property="productId"/>
         <result column="product_attribute_id" property="productAttributeId"/>

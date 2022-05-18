@@ -1,4 +1,4 @@
-package com.c414.dload.mall_backend.elasticsearch.document;
+package com.c414.dload.mall_backend.nosql.elasticsearch.document;
 
 import com.baomidou.mybatisplus.annotation.IdType;
 import com.baomidou.mybatisplus.annotation.TableId;

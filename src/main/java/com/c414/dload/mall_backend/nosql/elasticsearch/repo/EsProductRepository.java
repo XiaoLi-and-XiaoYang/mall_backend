@@ -1,7 +1,7 @@
-package com.c414.dload.mall_backend.elasticsearch.repo;
+package com.c414.dload.mall_backend.nosql.elasticsearch.repo;
 
 
-import com.c414.dload.mall_backend.elasticsearch.document.EsProduct;
+import com.c414.dload.mall_backend.nosql.elasticsearch.document.EsProduct;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.elasticsearch.repository.ElasticsearchRepository;

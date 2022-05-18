@@ -1,6 +1,6 @@
 package com.c414.dload.mall_backend.mapper;
 
-import com.c414.dload.mall_backend.elasticsearch.document.EsProduct;
+import com.c414.dload.mall_backend.nosql.elasticsearch.document.EsProduct;
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 import org.apache.ibatis.annotations.Mapper;
 

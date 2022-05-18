@@ -1,6 +1,6 @@
 package com.c414.dload.mall_backend.service;
 
-import com.c414.dload.mall_backend.elasticsearch.document.EsProductAttributeValue;
+import com.c414.dload.mall_backend.nosql.elasticsearch.document.EsProductAttributeValue;
 import com.baomidou.mybatisplus.extension.service.IService;
 
 /**
