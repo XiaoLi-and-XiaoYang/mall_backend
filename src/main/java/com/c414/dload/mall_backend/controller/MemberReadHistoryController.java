@@ -11,7 +11,7 @@ import javax.annotation.Resource;
 import java.util.List;
 
 @RestController
-@Api("会员商品浏览记录管理")
+@Api(tags = "MemberReadHistoryController", description = "用户浏览记录接口")
 @RequestMapping("/member/readHistory")
 public class MemberReadHistoryController {
 
@@ -40,7 +40,9 @@ public class MemberReadHistoryController {
         }
     }
 
-    public CommonResult list(@RequestParam("memberId") Long memberId){
+    @ApiOperation("查询用户浏览记录")
+    @GetMapping("/list")
+    public CommonResult list(Long memberId){
         List<MemberReadHistory> list = memberReadHistoryService.list(memberId);
         return CommonResult.success(list);
     }
