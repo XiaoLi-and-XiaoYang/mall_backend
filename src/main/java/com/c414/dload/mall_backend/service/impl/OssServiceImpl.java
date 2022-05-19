@@ -47,10 +47,10 @@ public class OssServiceImpl implements IOssService {
         SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMdd");
         String dir = ALIYUN_OSS_DIR_PREFIX+sdf.format(new Date());
         // 签名有效期
-        long expireEndTime = System.currentTimeMillis() + ALIYUN_OSS_EXPIRE * 1000;
+        long expireEndTime = System.currentTimeMillis() + ALIYUN_OSS_EXPIRE * 1000L;
         Date expiration = new Date(expireEndTime);
         // 文件大小
-        long maxSize = ALIYUN_OSS_MAX_SIZE * 1024 * 1024;
+        long maxSize = (long) ALIYUN_OSS_MAX_SIZE * 1024 * 1024;
         // 回调
         OssCallBackParam callback = new OssCallBackParam();
         callback.setCallbackUrl(ALIYUN_OSS_CALLBACK);
@@ -84,7 +84,7 @@ public class OssServiceImpl implements IOssService {
     public OssCallBackResult callback(HttpServletRequest request) {
         OssCallBackResult result= new OssCallBackResult();
         String filename = request.getParameter("filename");
-        filename = "http://".concat(ALIYUN_OSS_BUCKET_NAME).concat(".").concat(ALIYUN_OSS_ENDPOINT).concat("/").concat(filename);
+        filename = "http://"+ALIYUN_OSS_BUCKET_NAME+"."+ALIYUN_OSS_ENDPOINT+"/"+filename;
         result.setFilename(filename);
         result.setSize(request.getParameter("size"));
         result.setMimeType(request.getParameter("mimeType"));
