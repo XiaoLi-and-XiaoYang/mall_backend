@@ -30,7 +30,7 @@ public class OssController {
         return CommonResult.success(policy);
     }
 
-    @GetMapping("/callback")
+    @PostMapping("/callback")
     @ApiOperation("oss上传成功回调")
     public CommonResult callback(HttpServletRequest request){
         OssCallBackResult callback = ossService.callback(request);
