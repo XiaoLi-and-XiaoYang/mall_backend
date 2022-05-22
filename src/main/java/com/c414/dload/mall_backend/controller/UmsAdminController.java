@@ -1,6 +1,7 @@
 package com.c414.dload.mall_backend.controller;
 
 
+import cn.hutool.core.collection.CollUtil;
 import com.c414.dload.mall_backend.common.CommonResult;
 import com.c414.dload.mall_backend.entity.UmsAdmin;
 import com.c414.dload.mall_backend.entity.UmsAdminLoginParam;
@@ -14,8 +15,11 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
+import java.security.Principal;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
+import java.util.stream.Collectors;
 
 /**
  * <p>
@@ -55,7 +59,7 @@ public class UmsAdminController {
 
         String token = umsAdminService.login(umsAdminLoginParam.getUsername(), umsAdminLoginParam.getPassword());
         if (token == null) {
-            return CommonResult.validFailed("用户名或密码错误");
+            return CommonResult.failed("用户名或密码错误");
         }
         HashMap<String, String> tokenMap = new HashMap<>();
         tokenMap.put("token", token);
@@ -68,6 +72,20 @@ public class UmsAdminController {
     public CommonResult getPermissionList(@PathVariable String adminId) {
         List<UmsPermission> permissionList = umsAdminService.getPermissionList(Long.valueOf(adminId));
         return CommonResult.success(permissionList);
+    }
+
+    @ApiOperation(value = "获取当前登录用户信息")
+    @RequestMapping(value = "/info", method = RequestMethod.GET)
+    @ResponseBody
+    public CommonResult getAdminInfo(String username) {
+        if(username==null){
+            return CommonResult.unauthorized(null);
+        }
+
+
+
+        HashMap<String, String> data = new HashMap<>();
+        return CommonResult.success(data);
     }
 
 }

@@ -1,46 +1,135 @@
 package com.c414.dload.mall_backend.common;
 
-import lombok.AllArgsConstructor;
+import com.c414.dload.mall_backend.common.impl.ResultCode;
 import lombok.Data;
-import lombok.NoArgsConstructor;
 
 import java.io.Serializable;
 
 @Data
-@AllArgsConstructor
-@NoArgsConstructor
-public class CommonResult implements Serializable {
+public class CommonResult<T> implements Serializable {
+    /**
+     * 状态码
+     */
+    private long code;
+    /**
+     * 提示信息
+     */
+    private String message;
+    /**
+     * 数据封装
+     */
+    private T data;
 
-    private Boolean success;
-    private Integer code;
-    private String msg;
-    private Object data;
-
-    public static CommonResult success(Object data, String msg) {
-        return new CommonResult(true, 200, msg, data);
+    protected CommonResult() {
     }
 
-    public static CommonResult success(Object data) {
-        return new CommonResult(true, 200, "success", data);
+    protected CommonResult(long code, String message, T data) {
+        this.code = code;
+        this.message = message;
+        this.data = data;
     }
 
-    public static CommonResult failed() {
-        return new CommonResult(false, 403, "failed", null);
+    /**
+     * 成功返回结果
+     *
+     * @param data 获取的数据
+     */
+    public static <T> CommonResult<T> success(T data) {
+        return new CommonResult<T>(ResultCode.SUCCESS.getCode(), ResultCode.SUCCESS.getMessage(), data);
     }
 
-    public static CommonResult failed(String msg) {
-        return new CommonResult(false, 403, msg, null);
+    /**
+     * 成功返回结果
+     *
+     * @param data 获取的数据
+     * @param  message 提示信息
+     */
+    public static <T> CommonResult<T> success(T data, String message) {
+        return new CommonResult<T>(ResultCode.SUCCESS.getCode(), message, data);
     }
 
-    public static CommonResult forbidden(String message) {
-        return new CommonResult(false, 402, message, null);
+    /**
+     * 失败返回结果
+     * @param errorCode 错误码
+     */
+    public static <T> CommonResult<T> failed(IErrorCode errorCode) {
+        return new CommonResult<T>(errorCode.getCode(), errorCode.getMessage(), null);
     }
 
-    public static CommonResult unauthorized(String message) {
-        return new CommonResult(false, 402, message, null);
+    /**
+     * 失败返回结果
+     * @param errorCode 错误码
+     * @param message 错误信息
+     */
+    public static <T> CommonResult<T> failed(IErrorCode errorCode,String message) {
+        return new CommonResult<T>(errorCode.getCode(), message, null);
     }
 
-    public static CommonResult validFailed(String msg) {
-        return new CommonResult(false, 402, msg, null);
+    /**
+     * 失败返回结果
+     * @param message 提示信息
+     */
+    public static <T> CommonResult<T> failed(String message) {
+        return new CommonResult<T>(ResultCode.FAILED.getCode(), message, null);
+    }
+
+    /**
+     * 失败返回结果
+     */
+    public static <T> CommonResult<T> failed() {
+        return failed(ResultCode.FAILED);
+    }
+
+    /**
+     * 参数验证失败返回结果
+     */
+    public static <T> CommonResult<T> validateFailed() {
+        return failed(ResultCode.VALIDATE_FAILED);
+    }
+
+    /**
+     * 参数验证失败返回结果
+     * @param message 提示信息
+     */
+    public static <T> CommonResult<T> validateFailed(String message) {
+        return new CommonResult<T>(ResultCode.VALIDATE_FAILED.getCode(), message, null);
+    }
+
+    /**
+     * 未登录返回结果
+     */
+    public static <T> CommonResult<T> unauthorized(T data) {
+        return new CommonResult<T>(ResultCode.UNAUTHORIZED.getCode(), ResultCode.UNAUTHORIZED.getMessage(), data);
+    }
+
+    /**
+     * 未授权返回结果
+     */
+    public static <T> CommonResult<T> forbidden(T data) {
+        return new CommonResult<T>(ResultCode.FORBIDDEN.getCode(), ResultCode.FORBIDDEN.getMessage(), data);
+    }
+
+    public long getCode() {
+        return code;
+    }
+
+    public void setCode(long code) {
+        this.code = code;
+    }
+
+    public String getMessage() {
+        return message;
+    }
+
+    public void setMessage(String message) {
+        this.message = message;
+    }
+
+    public T getData() {
+        return data;
+    }
+
+    public void setData(T data) {
+        this.data = data;
     }
 }
