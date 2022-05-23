@@ -2,6 +2,9 @@ server:
   port: 8080
 
 spring:
+  profiles:
+    include:
+      oss
   data:
     mongodb:
       host: localhost # mongodb的连接地址

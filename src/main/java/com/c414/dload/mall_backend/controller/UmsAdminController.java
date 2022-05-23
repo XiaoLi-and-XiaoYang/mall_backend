@@ -5,8 +5,10 @@ import cn.hutool.core.collection.CollUtil;
 import com.c414.dload.mall_backend.common.CommonResult;
 import com.c414.dload.mall_backend.entity.UmsAdmin;
 import com.c414.dload.mall_backend.entity.UmsAdminLoginParam;
+import com.c414.dload.mall_backend.entity.UmsMenu;
 import com.c414.dload.mall_backend.entity.UmsPermission;
 import com.c414.dload.mall_backend.service.impl.UmsAdminServiceImpl;
+import com.c414.dload.mall_backend.service.impl.UmsMenuServiceImpl;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.BeanUtils;
@@ -40,6 +42,8 @@ public class UmsAdminController {
     private String tokenHeader;
     @Value("${jwt.tokenHead}")
     private String tokenHead;
+    @Resource
+    private UmsMenuServiceImpl umsMenuService;
 
     @PostMapping("/register")
     @ApiOperation("用户注册")
@@ -82,10 +86,12 @@ public class UmsAdminController {
             return CommonResult.unauthorized(null);
         }
         UmsAdmin adminByUsername = umsAdminService.getAdminByUsername(username);
+        List<UmsMenu> menuList = umsMenuService.getMenuList(adminByUsername.getId());
 
-
-
-        HashMap<String, String> data = new HashMap<>();
+        HashMap<String, Object> data = new HashMap<>();
+        data.put("username", username);
+        data.put("menu", menuList);
+        data.put("icon", adminByUsername.getIcon());
         return CommonResult.success(data);
     }
 
