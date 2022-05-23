@@ -20,7 +20,7 @@ public class Generator {
                 .packageConfig(builder -> {
                     builder.parent("com.c414.dload.mall_backend") // 设置父包名
                             .moduleName("") // 设置父包模块名
-                            .pathInfo(Collections.singletonMap(OutputFile.mapperXml, "E:\\javaPojo\\mall_backend\\src\\main\\resources\\mapper")); // 设置mapperXml生成路径
+                            .pathInfo(Collections.singletonMap(OutputFile.mapperXml, "E:\\javaCode\\mall_backend\\src\\main\\resources\\mapper")); // 设置mapperXml生成路径
                 })
                 .strategyConfig(builder -> {
                     builder.addInclude("ums_menu") // 设置需要生成的表名

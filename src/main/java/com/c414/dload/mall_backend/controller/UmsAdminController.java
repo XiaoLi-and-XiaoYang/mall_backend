@@ -81,6 +81,7 @@ public class UmsAdminController {
         if(username==null){
             return CommonResult.unauthorized(null);
         }
+        UmsAdmin adminByUsername = umsAdminService.getAdminByUsername(username);
 
 
 

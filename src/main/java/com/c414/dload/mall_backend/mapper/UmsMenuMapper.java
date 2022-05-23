@@ -3,6 +3,9 @@ package com.c414.dload.mall_backend.mapper;
 import com.c414.dload.mall_backend.entity.UmsMenu;
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 import org.apache.ibatis.annotations.Mapper;
+import org.apache.ibatis.annotations.Param;
+
+import java.util.List;
 
 /**
  * <p>
@@ -14,5 +17,7 @@ import org.apache.ibatis.annotations.Mapper;
  */
 @Mapper
 public interface UmsMenuMapper extends BaseMapper<UmsMenu> {
+
+    public List<UmsMenu> selectMenuListById(@Param("adminId") Long adminId);
 
 }

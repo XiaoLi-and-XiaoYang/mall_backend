@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.c414.dload.mall_backend.mapper.UmsMenuMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.c414.dload.mall_backend.entity.UmsMenu">
+        <id column="id" property="id" />
+        <result column="parent_id" property="parentId" />
+        <result column="create_time" property="createTime" />
+        <result column="title" property="title" />
+        <result column="level" property="level" />
+        <result column="sort" property="sort" />
+        <result column="name" property="name" />
+        <result column="icon" property="icon" />
+        <result column="hidden" property="hidden" />
+    </resultMap>
+
+    <!-- 通用查询结果列 -->
+    <sql id="Base_Column_List">
+        id, parent_id, create_time, title, level, sort, name, icon, hidden
+    </sql>
+
+    <select id="selectMenuListById" resultType="com.c414.dload.mall_backend.entity.UmsMenu">
+        select
+            m.id id,
+            m.parent_id parentId,
+            m.create_time createTime,
+            m.title title,
+            m.level level,
+            m.sort sort,
+            m.name name,
+            m.icon icon,
+            m.hidden hidden
+        from
+            ums_admin_role_relation ar
+                left join ums_role r on ar.role_id=r.id
+                left join ums_role_menu_relation rmr on r.id=rmr.role_id
+                left join ums_menu m on rmr.menu_id=m.id
+        where
+            ar.admin_id=#{adminId}
+          and m.id is not null
+        group by
+            m.id
+    </select>
+
+</mapper>
