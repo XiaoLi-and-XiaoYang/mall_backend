@@ -15,7 +15,7 @@ public class Generator {
                     builder.author("dload") // 设置作者
                             .enableSwagger() // 开启 swagger 模式
                             .fileOverride() // 覆盖已生成文件
-                            .outputDir("E:\\javaPojo\\mall_backend\\src\\main\\java"); // 指定输出目录
+                            .outputDir("E:\\javaCode\\mall_backend\\src\\main\\java"); // 指定输出目录
                 })
                 .packageConfig(builder -> {
                     builder.parent("com.c414.dload.mall_backend") // 设置父包名
@@ -23,22 +23,23 @@ public class Generator {
                             .pathInfo(Collections.singletonMap(OutputFile.mapperXml, "E:\\javaPojo\\mall_backend\\src\\main\\resources\\mapper")); // 设置mapperXml生成路径
                 })
                 .strategyConfig(builder -> {
-                    builder.addInclude("pms_product_attribute_value") // 设置需要生成的表名
-                            .addTablePrefix("pms_") // 设置过滤表前缀
+                    builder.addInclude("ums_menu") // 设置需要生成的表名
+                            .addTablePrefix("ums_") // 设置过滤表前缀
                             .entityBuilder()
                             .enableLombok()
+                            .formatFileName("UmsMenu")
                             .controllerBuilder()
                             .enableRestStyle()
-                            .formatFileName("EsProductAttributeValueController")
+                            .formatFileName("UmsMenuController")
                             .serviceBuilder()
-                            .formatServiceFileName("IEsProductAttributeValueService")
-                            .formatServiceImplFileName("EsProductAttributeValueServiceImpl")
+                            .formatServiceFileName("IUmsMenuService")
+                            .formatServiceImplFileName("UmsMenuServiceImpl")
                             .mapperBuilder()
                             .enableBaseColumnList()
                             .enableBaseResultMap()
                             .enableMapperAnnotation()
-                            .formatMapperFileName("EsProductAttributeValueMapper")
-                            .formatXmlFileName("EsProductAttributeValueMapper");
+                            .formatMapperFileName("UmsMenuMapper")
+                            .formatXmlFileName("UmsMenuMapper");
                 })
                 .templateEngine(new FreemarkerTemplateEngine()) // 使用Freemarker引擎模板，默认的是Velocity引擎模板
                 .execute();
