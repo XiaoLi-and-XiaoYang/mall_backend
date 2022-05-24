@@ -24,4 +24,6 @@ public interface UmsAdminRoleRelationMapper extends BaseMapper<UmsAdminRoleRelat
      */
     List<UmsPermission> getPermissionList(@Param("adminId") Long adminId);
 
+    List<Long> getAdminIdList(@Param("resourceId") Long resourceId);
+
 }

@@ -41,11 +41,16 @@ spring:
 
 # 自定义redis key
 redis:
+  database: mall
   key:
     prefix:
       authCode: "portal:authCode:"
     expire:
-      authCode: 120 # 验证码超期时间
+      authCode: 120
+    admin: 'ums:admin'
+    resourceList: 'ums:resourceList'
+  expire:
+    common: 86400
 
 mybatis-plus:
   mapper-locations:

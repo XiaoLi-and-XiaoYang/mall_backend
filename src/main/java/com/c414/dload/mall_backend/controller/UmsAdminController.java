@@ -17,6 +17,7 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
+import javax.servlet.http.HttpServletRequest;
 import java.security.Principal;
 import java.util.HashMap;
 import java.util.List;
@@ -79,8 +80,7 @@ public class UmsAdminController {
     }
 
     @ApiOperation(value = "获取当前登录用户信息")
-    @RequestMapping(value = "/info", method = RequestMethod.GET)
-    @ResponseBody
+    @GetMapping(value = "/info")
     public CommonResult getAdminInfo(String username) {
         if(username==null){
             return CommonResult.unauthorized(null);
@@ -93,6 +93,20 @@ public class UmsAdminController {
         data.put("menu", menuList);
         data.put("icon", adminByUsername.getIcon());
         return CommonResult.success(data);
+    }
+
+    @ApiOperation("刷新登陆token")
+    @GetMapping("/refreshToken")
+    public CommonResult refreshToken(HttpServletRequest request){
+        String token = request.getHeader("token");
+        String newToken = umsAdminService.refreshToken(token);
+        if (newToken == null) {
+            return CommonResult.failed("token已经过期！");
+        }
+        Map<String, String> tokenMap = new HashMap<>();
+        tokenMap.put("token", newToken);
+        tokenMap.put("tokenHead", tokenHead);
+        return CommonResult.success(tokenMap);
     }
 
 }

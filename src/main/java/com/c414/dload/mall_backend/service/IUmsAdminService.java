@@ -40,4 +40,11 @@ public interface IUmsAdminService extends IService<UmsAdmin> {
      */
     List<UmsPermission> getPermissionList(Long adminId);
 
+    String refreshToken(String oldToken);
+
+    /**
+     * 根据用户id获取用户
+     */
+    UmsAdmin getItem(Long id);
+
 }

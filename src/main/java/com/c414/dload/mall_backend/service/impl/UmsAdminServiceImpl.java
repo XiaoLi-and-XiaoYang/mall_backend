@@ -111,4 +111,14 @@ public class UmsAdminServiceImpl extends ServiceImpl<UmsAdminMapper, UmsAdmin> i
     public List<UmsPermission> getPermissionList(Long adminId) {
         return umsAdminRoleRelationMapper.getPermissionList(adminId);
     }
+
+    @Override
+    public String refreshToken(String oldToken) {
+        return jwtTokenUtil.refreshToken(oldToken);
+    }
+
+    @Override
+    public UmsAdmin getItem(Long id) {
+        return umsAdminMapper.selectById(id);
+    }
 }

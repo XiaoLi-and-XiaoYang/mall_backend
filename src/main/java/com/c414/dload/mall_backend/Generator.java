@@ -23,23 +23,23 @@ public class Generator {
                             .pathInfo(Collections.singletonMap(OutputFile.mapperXml, "E:\\javaCode\\mall_backend\\src\\main\\resources\\mapper")); // 设置mapperXml生成路径
                 })
                 .strategyConfig(builder -> {
-                    builder.addInclude("ums_menu") // 设置需要生成的表名
+                    builder.addInclude("ums_resource") // 设置需要生成的表名
                             .addTablePrefix("ums_") // 设置过滤表前缀
                             .entityBuilder()
                             .enableLombok()
-                            .formatFileName("UmsMenu")
+                            .formatFileName("UmsResource")
                             .controllerBuilder()
                             .enableRestStyle()
-                            .formatFileName("UmsMenuController")
+                            .formatFileName("UmsResourceController")
                             .serviceBuilder()
-                            .formatServiceFileName("IUmsMenuService")
-                            .formatServiceImplFileName("UmsMenuServiceImpl")
+                            .formatServiceFileName("IUmsResourceService")
+                            .formatServiceImplFileName("UmsResourceServiceImpl")
                             .mapperBuilder()
                             .enableBaseColumnList()
                             .enableBaseResultMap()
                             .enableMapperAnnotation()
-                            .formatMapperFileName("UmsMenuMapper")
-                            .formatXmlFileName("UmsMenuMapper");
+                            .formatMapperFileName("UmsResourceMapper")
+                            .formatXmlFileName("UmsResourceMapper");
                 })
                 .templateEngine(new FreemarkerTemplateEngine()) // 使用Freemarker引擎模板，默认的是Velocity引擎模板
                 .execute();
